@@ -1,0 +1,13 @@
+################################
+# THIS FILE IS MANAGED BY CHEF
+################################
+# Elasticsearch
+################################
+#  CHANGES MAY BE OVERWRITTEN
+################################
+
+<%
+@params.sort.each do |key, value|
+  next if key.nil? || value.nil?
+  %><%= key.to_s %>=<%= value.to_s %>
+<% end %>
