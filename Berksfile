@@ -13,5 +13,7 @@ group :integration do
   cookbook 'windows'
   cookbook 'ark'
   cookbook 'build-essential'
+  cookbook 'homebrew'
+
 
 end
