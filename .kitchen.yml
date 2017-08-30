@@ -81,13 +81,14 @@ suites:
     run_list:
       - recipe[java]
       - recipe[elasticsearch_test::default_with_plugins]
+      - recipe[elasticsearch_test::hardening]
     attributes:
       elasticsearch:
         install:
           type: package
     verifier:
       inspec_tests:
-        - https://github.com/elastic/elasticsearch-inspec
+        - git: https://github.com/elastic/elasticsearch-inspec.git
 
   - name: doubleinstance
     run_list:

@@ -1,0 +1,3 @@
+instances:
+  - name: "CN=DoD,OU=DoD,C=US,O=U.S. Government"
+    filename: "elastic"

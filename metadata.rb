@@ -18,6 +18,7 @@ depends 'apt'
 depends 'yum'
 depends 'chef-sugar'
 depends 'ark'
+depends 'zipfile'
 
 issues_url       'https://github.com/elastic/cookbook-elasticsearch/issues'
 source_url       'https://github.com/elastic/cookbook-elasticsearch'

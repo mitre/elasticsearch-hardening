@@ -79,6 +79,11 @@ class ElasticsearchCookbook::ConfigureResource < Chef::Resource::LWRPBase
     'path.data' => nil, # see path_data above
     'path.logs' => nil, # see path_logs above
 
+    'xpack.ssl.key' => '/etc/elasticsearch/x-pack/elastic/elastic.key',
+    'xpack.ssl.certificate' => '/etc/elasticsearch/x-pack/elastic/elastic.crt',
+    'xpack.ssl.certificate_authorities' => '/etc/elasticsearch//x-pack/ca/ca.crt',
+    'xpack.security.transport.ssl.enabled' => 'true',
+    'xpack.security.http.ssl.enabled' => 'true',
     # Refer to ES documentation on how to configure these to a
     # specific node role/type instead of using the defaults
     #

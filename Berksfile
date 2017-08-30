@@ -14,6 +14,7 @@ group :integration do
   cookbook 'ark'
   cookbook 'build-essential'
   cookbook 'homebrew'
+  cookbook 'zipfile'
 
 
 end
