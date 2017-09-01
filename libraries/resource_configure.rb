@@ -81,7 +81,7 @@ class ElasticsearchCookbook::ConfigureResource < Chef::Resource::LWRPBase
 
     'xpack.ssl.key' => '/etc/elasticsearch/x-pack/elastic/elastic.key',
     'xpack.ssl.certificate' => '/etc/elasticsearch/x-pack/elastic/elastic.crt',
-    'xpack.ssl.certificate_authorities' => '/etc/elasticsearch/x-pack/ca/ca.crt', #test
+    'xpack.ssl.certificate_authorities' => '/etc/elasticsearch/x-pack/ca/ca.crt',
     'xpack.security.transport.ssl.enabled' => true,
     'xpack.security.http.ssl.enabled' => true,
 
