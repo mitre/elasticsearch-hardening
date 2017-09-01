@@ -15,6 +15,7 @@ end
 
 zipfile '/etc/elasticsearch/x-pack/elastic.zip' do
   into '/etc/elasticsearch/x-pack/'
+  ignore_failure true
 end
 
 service "elasticsearch" do

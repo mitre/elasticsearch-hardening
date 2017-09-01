@@ -81,9 +81,21 @@ class ElasticsearchCookbook::ConfigureResource < Chef::Resource::LWRPBase
 
     'xpack.ssl.key' => '/etc/elasticsearch/x-pack/elastic/elastic.key',
     'xpack.ssl.certificate' => '/etc/elasticsearch/x-pack/elastic/elastic.crt',
-    'xpack.ssl.certificate_authorities' => '/etc/elasticsearch//x-pack/ca/ca.crt',
-    'xpack.security.transport.ssl.enabled' => 'true',
-    'xpack.security.http.ssl.enabled' => 'true',
+    'xpack.ssl.certificate_authorities' => '/etc/elasticsearch/x-pack/ca/ca.crt',
+    'xpack.security.transport.ssl.enabled' => true,
+    'xpack.security.http.ssl.enabled' => true,
+
+    'xpack.security.http.filter.enabled' => true,
+    'xpack.security.http.filter.allow' => ['10.0.2.15'],
+    'xpack.security.http.filter.deny' => '_all',
+
+    'xpack.security.audit.enabled' => true,
+    'xpack.security.audit.outputs' => [ 'index', 'logfile' ],
+    'xpack.security.audit.logfile.events.include' => ['access_denied', 'anonymous_access_denied', 'authentication_failed',
+     'connection_denied', 'tampered_request', 'run_as_denied', 'run_as_granted'],
+    'xpack.security.audit.logfile.events.exclude' => ['access_granted'],
+
+
     # Refer to ES documentation on how to configure these to a
     # specific node role/type instead of using the defaults
     #
