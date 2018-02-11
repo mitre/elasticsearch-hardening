@@ -88,7 +88,8 @@ suites:
           type: package
     verifier:
       inspec_tests:
-        - git: https://github.com/elastic/elasticsearch-inspec.git
+        - path: ../elasticsearch-inspec
+        # - git: https://github.com/elastic/elasticsearch-inspec.git
 
   - name: doubleinstance
     run_list:

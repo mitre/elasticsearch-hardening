@@ -82,6 +82,14 @@ class ElasticsearchCookbook::ConfigureResource < Chef::Resource::LWRPBase
     'xpack.ssl.key' => '/etc/elasticsearch/x-pack/elastic/elastic.key',
     'xpack.ssl.certificate' => '/etc/elasticsearch/x-pack/elastic/elastic.crt',
     'xpack.ssl.certificate_authorities' => '/etc/elasticsearch/x-pack/ca/ca.crt',
+    'xpack.ssl.cipher_suites' => [
+            'TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256',
+            'TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256',
+            'TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA',
+            'TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA',
+            'TLS_RSA_WITH_AES_128_CBC_SHA256',
+            'TLS_RSA_WITH_AES_128_CBC_SHA'
+            ],
     'xpack.security.transport.ssl.enabled' => true,
     'xpack.security.http.ssl.enabled' => true,
 
@@ -92,9 +100,16 @@ class ElasticsearchCookbook::ConfigureResource < Chef::Resource::LWRPBase
     'xpack.security.audit.enabled' => true,
     'xpack.security.audit.outputs' => [ 'index', 'logfile' ],
     'xpack.security.audit.logfile.events.include' => ['access_denied', 'anonymous_access_denied', 'authentication_failed',
-     'connection_denied', 'tampered_request', 'run_as_denied', 'run_as_granted'],
+    'connection_denied', 'tampered_request', 'run_as_denied', 'run_as_granted'],
     'xpack.security.audit.logfile.events.exclude' => ['access_granted'],
+    
+    'xpack.security.authc.realms.pki1.type' => 'pki',
+    'xpack.security.authc.realms.pki1.order'=> 0,
+    'xpack.security.authc.realms.pki1.username_pattern'=> "EMAILADDRESS=(.*?)(?:,|$)",
 
+    'script.inline' => false ,
+    'script.stored' => false ,
+    'script.file' => false ,
 
     # Refer to ES documentation on how to configure these to a
     # specific node role/type instead of using the defaults

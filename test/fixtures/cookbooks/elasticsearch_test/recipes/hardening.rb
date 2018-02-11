@@ -21,3 +21,22 @@ end
 service "elasticsearch" do
   action :restart
 end
+
+execute 'set auditd rule' do
+  command 'auditctl -w /etc/elasticsearch/elasticsearch.yml -p war -k elasticsearch-config'
+  cwd '/'
+  ignore_failure true
+end
+
+directory '/var/log/elasticsearch/audit' do
+  owner 'elasticsearch'
+  group 'elasticsearch'
+  mode '0644'
+action :create
+end
+
+directory '/usr/share/elasticsearch' do
+  owner 'elasticsearch'
+  group 'elasticsearch'
+action :create
+end
