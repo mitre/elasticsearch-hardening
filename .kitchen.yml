@@ -12,6 +12,12 @@ driver:
 verifier:
   name: inspec
   sudo: true
+  inspec_tests:
+    - git: https://github.com/elastic/elasticsearch-inspec.git
+      branch: 6.0
+  attributes:
+  format: json
+  output: ./%{platform}_%{suite}_results.json
 
 provisioner:
   name: chef_zero
@@ -62,9 +68,6 @@ suites:
       elasticsearch:
         install:
           type: repository
-    verifier:
-      inspec_tests:
-        - https://github.com/elastic/elasticsearch-inspec
 
   - name: tarball # install by tarball
     run_list:
@@ -73,9 +76,6 @@ suites:
       elasticsearch:
         install:
           type: tarball
-    verifier:
-      inspec_tests:
-        - https://github.com/elastic/elasticsearch-inspec
 
   - name: package # install from package directly
     run_list:
@@ -86,28 +86,15 @@ suites:
       elasticsearch:
         install:
           type: package
-    verifier:
-      inspec_tests:
-        - path: ../elasticsearch-inspec
-        # - git: https://github.com/elastic/elasticsearch-inspec.git
 
   - name: doubleinstance
     run_list:
       - recipe[elasticsearch_test::doubleinstances]
-    verifier:
-      inspec_tests:
-        - https://github.com/elastic/elasticsearch-inspec
 
   - name: override_package # the override-everything use case
     run_list:
       - recipe[elasticsearch_test::package]
-    verifier:
-      inspec_tests:
-        - https://github.com/elastic/elasticsearch-inspec
 
   - name: override_tarball # the override-everything use case
     run_list:
       - recipe[elasticsearch_test::tarball]
-    verifier:
-      inspec_tests:
-        - https://github.com/elastic/elasticsearch-inspec
